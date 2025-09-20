@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Diamonds</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://i.ibb.co/x6bnWvC/freefire-bg.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 300px;
+      width: 90%;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      text-align: center;
+    }
+    button {
+      background: #ffcc00;
+      color: black;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px #ffcc00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Free Fire Diamond Reward</h2>
+    <p>Enter your Free Fire nickname:</p>
+    <input type="text" id="nickname" placeholder="Your Nickname">
+    <br>
+    <button onclick="sendData()">Get 1000 Diamonds</button>
+  </div>
+
+  <div class="popup" id="popup">
+    <h3>🎉 1000 Diamonds Sent! 🎉</h3>
+    <p>Check your game inbox for the reward.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <script>
+    function sendData() {
+      const nickname = document.getElementById('nickname').value;
+      if (!nickname) {
+        alert("Please enter your nickname first!");
+        return;
+      }
+      console.log("Nickname collected:", nickname); // Here you can send data to your server/API securely
+      document.getElementById('popup').style.display = 'block';
+    }
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
