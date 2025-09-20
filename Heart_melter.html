@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Heart Particles — For You</title>
+<style>
+  html,body {
+    height:100%; margin:0;
+    overflow:hidden;
+    background: linear-gradient(-45deg, #1b1f4a, #2c1c3c, #401a3d, #6b2b58);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  canvas { display:block; width:100vw; height:100vh; }
+  .center-ui {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align:center;
+    pointer-events: none;
+  }
+  .animated-text {
+    font-family: "Segoe UI", sans-serif;
+    color: #ffeff4;
+    font-size: clamp(20px, 5vw, 32px);
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top:20px;
+    text-shadow: 0 0 20px rgba(255,100,180,0.6), 0 0 40px rgba(255,0,150,0.4);
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 0.5s;
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.9);}
+    100% { opacity: 1; transform: scale(1);}
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div class="center-ui" id="ui">
+  <div class="animated-text">For You 💕</div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2021/09/08/audio_2c1d1d2c3a.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W = window.innerWidth, H = window.innerHeight;
+const DPR = window.devicePixelRatio || 1;
+canvas.width = W * DPR;
+canvas.height = H * DPR;
+ctx.scale(DPR,DPR);
+
+function resize() {
+  W = window.innerWidth;
+  H = window.innerHeight;
+  canvas.width = W * DPR;
+  canvas.height = H * DPR;
+  ctx.scale(DPR,DPR);
+  heart.initTargets();
+}
+window.addEventListener('resize', resize);
+
+// Heart shape function
+function heartPoint(t, scale=18) {
+  const x = 16 * Math.pow(Math.sin(t), 3);
+  const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+  return { x:x*scale, y:-y*scale };
+}
+
+const heart = {
+  targets: [],
+  initTargets() {
+    this.targets = [];
+    const centerX = W/2, centerY = H/2 - Math.min(60, H*0.05);
+    const scale = Math.min(W, H) / 30; // auto-fit heart size
+    const density = Math.floor(2500 * Math.min(1,(W*H)/(1200*800))); // denser particles
+    for (let i=0;i<density;i++){
+      const t = Math.random() * Math.PI * 2;
+      const base = heartPoint(t, scale);
+      const r = Math.pow(Math.random(),0.9)*(0.9+Math.random()*0.2);
+      const tx = centerX + base.x * r;
+      const ty = centerY + base.y * r;
+      const hue = 330 + Math.random()*40;
+      const light = 55 + Math.random()*12;
+      this.targets.push({x:tx,y:ty,color:`hsl(${hue}deg 80% ${light}%)`});
+    }
+  }
+};
+heart.initTargets();
+
+class Particle {
+  constructor(target){
+    this.tx = target.x;
+    this.ty = target.y;
+    this.color = target.color;
+    this.reset();
+  }
+  reset(){
+    this.x = W/2 + (Math.random()-0.5)*100;
+    this.y = H/2 + (Math.random()-0.5)*100;
+    this.vx = (Math.random()-0.5)*1.5;
+    this.vy = (Math.random()-0.5)*1.5;
+    this.size = 1 + Math.random()*2.2;
+    this.opacity = 0.9;
+    this.phase = Math.random()*Math.PI*2;
+  }
+  update(){
+    this.phase += 0.02;
+    const ox = Math.cos(this.phase)*0.6;
+    const oy = Math.sin(this.phase)*0.6;
+    const dx = (this.tx+ox - this.x);
+    const dy = (this.ty+oy - this.y);
+    this.vx += dx*0.002;
+    this.vy += dy*0.002;
+    this.vx *= 0.96;
+    this.vy *= 0.96;
+    this.x += this.vx;
+    this.y += this.vy;
+  }
+  draw(ctx){
+    ctx.beginPath();
+    ctx.fillStyle=this.color;
+    ctx.globalAlpha=this.opacity;
+    ctx.fillRect(this.x,this.y,this.size,this.size);
+    ctx.globalAlpha=1;
+  }
+  explode(force=6){
+    const angle = Math.atan2(this.y-H/2,this.x-W/2)+(Math.random()-0.5)*0.8;
+    const mag = force*(0.6+Math.random()*1.2);
+    this.vx = Math.cos(angle)*mag+(Math.random()-0.5)*2;
+    this.vy = Math.sin(angle)*mag*0.6-(Math.random()*2);
+  }
+}
+
+let particles = [];
+function createParticles(){
+  particles = heart.targets.map(t=>new Particle(t));
+}
+createParticles();
+
+// Floating hearts
+const floatingHearts = [];
+function createFloatingHeart(){
+  const size = 10 + Math.random()*15;
+  floatingHearts.push({
+    x: Math.random()*W,
+    y: H + size,
+    size,
+    speed: 0.3+Math.random()*0.6,
+    opacity: 0.4+Math.random()*0.5,
+    color: `hsl(${330+Math.random()*30} 80% 70%)`
+  });
+}
+setInterval(createFloatingHeart, 400);
+
+function drawFloatingHearts(){
+  for(let i=floatingHearts.length-1;i>=0;i--){
+    const h=floatingHearts[i];
+    h.y -= h.speed;
+    ctx.save();
+    ctx.globalAlpha=h.opacity;
+    ctx.fillStyle=h.color;
+    drawHeartShape(ctx,h.x,h.y,h.size);
+    ctx.restore();
+    if(h.y < -50) floatingHearts.splice(i,1);
+  }
+}
+function drawHeartShape(ctx,x,y,size){
+  ctx.beginPath();
+  const topCurveHeight = size*0.3;
+  ctx.moveTo(x,y+topCurveHeight);
+  ctx.bezierCurveTo(x,y,x-size/2,y,x-size/2,y+topCurveHeight);
+  ctx.bezierCurveTo(x-size/2,y+size,x,y+size*1.4,x,y+size*1.7);
+  ctx.bezierCurveTo(x,y+size*1.4,x+size/2,y+size,x+size/2,y+topCurveHeight);
+  ctx.bezierCurveTo(x+size/2,y,x,y,x,y+topCurveHeight);
+  ctx.fill();
+}
+
+function frame(){
+  ctx.clearRect(0,0,W,H);
+  for(let p of particles){
+    p.update();
+    p.draw(ctx);
+  }
+  drawFloatingHearts();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+// Click anywhere for music + explosion
+const bgMusic = document.getElementById('bgMusic');
+document.body.addEventListener('click', ()=>{
+  bgMusic.play();
+  for(let p of particles) p.explode(10);
+  spawnConfetti(100);
+});
+
+// Confetti
+const confetti=[];
+function spawnConfetti(n){
+  for(let i=0;i<n;i++){
+    confetti.push({
+      x:W/2,y:H/2,vx:(Math.random()-0.5)*12,
+      vy:-6-Math.random()*8,life:120+Math.random()*60,
+      size:2+Math.random()*4,
+      color:`hsl(${320+Math.random()*40} 80% ${50+Math.random()*20}%)`
+    });
+  }
+  const interval=setInterval(()=>{
+    for(let i=confetti.length-1;i>=0;i--){
+      const p=confetti[i];
+      p.vy+=0.3;p.vx*=0.995;
+      p.x+=p.vx;p.y+=p.vy;p.life--;
+      if(p.life<=0||p.y>H+50) confetti.splice(i,1);
+      ctx.save();
+      ctx.globalCompositeOperation='lighter';
+      ctx.fillStyle=p.color;
+      ctx.globalAlpha=Math.max(0,p.life/140);
+      ctx.fillRect(p.x,p.y,p.size,p.size*1.8);
+      ctx.restore();
+    }
+    if(confetti.length===0) clearInterval(interval);
+  },16);
+}
+</script>
+</body>
+</html>
