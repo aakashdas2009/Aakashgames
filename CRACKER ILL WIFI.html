@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakash Cracker WiFi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0, 30, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23000"/><path d="M0 0L100 100M100 0L0 100" stroke="%23003300" stroke-width="0.5"/></svg>');
+            position: relative;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #00cc00;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 28px;
+            color: #00ff00;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            animation: glow 2s infinite alternate;
+            letter-spacing: 1px;
+        }
+        
+        .logo {
+            position: relative;
+            margin: 10px auto 20px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #001100, #003300);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #00cc00;
+            animation: pulse 3s infinite alternate;
+        }
+        
+        .logo-inner {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px dashed #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: spin 15s infinite linear;
+        }
+        
+        .logo-text {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            animation: none;
+        }
+        
+        .phase {
+            display: none;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #003300;
+            border-radius: 5px;
+            background-color: rgba(0, 20, 0, 0.8);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+        }
+        
+        .active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            background-color: #001100;
+            border: 1px solid #004400;
+            color: #00ff00;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        
+        button {
+            padding: 12px 20px;
+            background: linear-gradient(to bottom, #004400, #002200);
+            color: #00ff00;
+            border: 1px solid #00aa00;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button:hover {
+            background: linear-gradient(to bottom, #006600, #004400);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .terminal {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 5px;
+            height: 300px;
+            overflow-y: auto;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid #003300;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            font-family: 'Courier New', monospace;
+        }
+        
+        .error-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff0000, #800000);
+            color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            text-align: center;
+            padding: 20px;
+            animation: shake 0.5s infinite;
+        }
+        
+        .progress-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background-color: #001100;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #003300;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #004400, #00cc00);
+            width: 0%;
+            transition: width 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(
+                -45deg, 
+                rgba(255, 255, 255, 0.2) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.2) 75%, 
+                transparent 75%, 
+                transparent
+            );
+            z-index: 1;
+            background-size: 20px 20px;
+            animation: move 2s linear infinite;
+        }
+        
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            text-align: center;
+            font-size: 12px;
+            color: #00ff00;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .network-error {
+            display: none;
+            background: linear-gradient(to bottom, #330000, #220000);
+            color: #ff6666;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+        
+        .aakash-sig {
+            color: #00ff00;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+            animation: pulse 2s infinite;
+        }
+        
+        .code-line {
+            display: flex;
+            margin-bottom: 3px;
+        }
+        
+        .line-number {
+            color: #008800;
+            margin-right: 10px;
+            user-select: none;
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+        
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+            100% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
+        }
+        
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
+            100% { text-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 25px rgba(0, 255, 0, 0.5); }
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes matrix {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-inner {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .terminal {
+                height: 200px;
+                font-size: 12px;
+            }
+            
+            input[type="text"], button {
+                font-size: 16px;
+            }
+            
+            .phase {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBackground"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-inner">
+                    <div class="logo-text">AAKASH<br>CRACKER<br>WiFi</div>
+                </div>
+            </div>
+            <h1>AAKASH CRACKER WiFi v3.8.2</h1>
+            <p>Advanced Network Penetration Suite</p>
+        </div>
+        
+        <!-- Phase 1: WiFi Name Input -->
+        <div class="phase active" id="phase1">
+            <h2>SELECT TARGET NETWORK</h2>
+            <p>Enter the SSID of the WiFi network to scan:</p>
+            <input type="text" id="wifiName" placeholder="e.g., HomeNetwork, Starbucks_WiFi">
+            <button onclick="startHacking()">INITIATE SECURITY SCAN</button>
+        </div>
+        
+        <!-- Phase 2: Hacking Simulation -->
+        <div class="phase" id="phase2">
+            <h2>SCANNING NETWORK: <span id="targetNetwork"></span></h2>
+            <div class="terminal" id="terminalOutput"></div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="scanProgress"></div>
+                </div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+        </div>
+        
+        <!-- Phase 3: Operator Code Request -->
+        <div class="phase" id="phase3">
+            <h2>AUTHORIZATION REQUIRED</h2>
+            <p>Operator security forces verification needed</p>
+            <p>Enter security override code:</p>
+            <input type="text" id="operatorCode" placeholder="Security code">
+            <button onclick="verifyOperatorCode()">SUBMIT CODE</button>
+        </div>
+        
+        <!-- Phase 4: Password Cracking Simulation -->
+        <div class="phase" id="phase4">
+            <h2>CRACKING ENCRYPTION: <span id="targetNetwork2"></span></h2>
+            <div class="terminal" id="crackingOutput"></div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="crackingProgress"></div>
+                </div>
+                <div class="progress-text" id="crackingProgressText">0%</div>
+            </div>
+        </div>
+        
+        <!-- Phase 5: Network Error -->
+        <div class="phase" id="phase5">
+            <h2>NETWORK CONNECTION ISSUE DETECTED</h2>
+            <div class="network-error" id="networkError">
+                <p class="blink">WARNING: SIGNAL TOO WEAK TO COMPLETE OPERATION</p>
+                <p>Move closer to the target network to establish stronger connection</p>
+                <p>Cracking process will resume automatically when signal improves</p>
+            </div>
+        </div>
+        
+        <!-- Error Screen -->
+        <div class="error-screen" id="errorScreen">
+            <h2 class="glitch-text">SYSTEM MALFUNCTION</h2>
+            <p>UNAUTHORIZED ACCESS DETECTED</p>
+            <p>SECURITY PROTOCOLS ENGAGED</p>
+        </div>
+    </div>
+
+    <script>
+        // Create matrix background effect
+        function createMatrixBackground() {
+            const matrixBg = document.getElementById('matrixBackground');
+            const characters = '01';
+            const fontSize = 14;
+            const columns = Math.floor(window.innerWidth / fontSize);
+            
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.style.position = 'absolute';
+                column.style.top = Math.random() * -100 + 'px';
+                column.style.left = i * fontSize + 'px';
+                column.style.fontSize = fontSize + 'px';
+                column.style.width = fontSize + 'px';
+                column.style.color = '#00cc00';
+                column.style.textAlign = 'center';
+                column.style.animation = `matrix ${(Math.random() * 5 + 5)}s linear infinite`;
+                column.style.animationDelay = Math.random() * 5 + 's';
+                
+                let text = '';
+                const rows = Math.floor(window.innerHeight / fontSize) + 1;
+                for (let j = 0; j < rows; j++) {
+                    text += characters.charAt(Math.floor(Math.random() * characters.length));
+                }
+                
+                column.textContent = text;
+                matrixBg.appendChild(column);
+            }
+        }
+        
+        // Get elements
+        const phases = document.querySelectorAll('.phase');
+        const wifiNameInput = document.getElementById('wifiName');
+        const targetNetworkSpan = document.getElementById('targetNetwork');
+        const targetNetworkSpan2 = document.getElementById('targetNetwork2');
+        const terminalOutput = document.getElementById('terminalOutput');
+        const crackingOutput = document.getElementById('crackingOutput');
+        const scanProgress = document.getElementById('scanProgress');
+        const progressText = document.getElementById('progressText');
+        const crackingProgress = document.getElementById('crackingProgress');
+        const crackingProgressText = document.getElementById('crackingProgressText');
+        const operatorCodeInput = document.getElementById('operatorCode');
+        const errorScreen = document.getElementById('errorScreen');
+        const networkError = document.getElementById('networkError');
+        
+        // Correct operator code (the "legend")
+        const correctOperatorCode = "legend";
+        
+        // Hacking code snippets
+        const codeSnippets = [
+            "#include <wifi_cracker.h>",
+            "void main() {",
+            "  initialize_hacking_suite();",
+            "  target_ssid = '%TARGET%';",
+            "  packet_injection_mode = ACTIVE;",
+            "  while(!crack_success) {",
+            "    capture_handshake();",
+            "    brute_force_attempt++;",
+            "    if (handshake_captured) {",
+            "      decrypt_psk();",
+            "    }",
+            "  }",
+            "}",
+            "// Aakash Cracker Algorithm v3.8.2",
+            "// Bypassing WPA2 encryption",
+            "for (int i = 0; i < MAX_ATTEMPTS; i++) {",
+            "  test_password(dictionary[i]);",
+            "  if (password_correct) break;",
+            "}",
+            "// Injecting packets to force reauthentication",
+            "inject_deauth_packet(target_bssid);",
+            "// Analyzing captured handshake",
+            "analyze_packet(captured_packets);"
+        ];
+        
+        function showPhase(phaseNumber) {
+            phases.forEach((phase, index) => {
+                if (index + 1 === phaseNumber) {
+                    phase.classList.add('active');
+                } else {
+                    phase.classList.remove('active');
+                }
+            });
+        }
+        
+        function addTerminalLine(text, element = terminalOutput) {
+            const lineNumber = element.children.length + 1;
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'code-line';
+            
+            const numberSpan = document.createElement('span');
+            numberSpan.className = 'line-number';
+            numberSpan.textContent = lineNumber.toString().padStart(3, '0');
+            
+            const textSpan = document.createElement('span');
+            textSpan.textContent = text;
+            
+            // Randomly add "Aakash" signature to some lines
+            if (Math.random() < 0.1) {
+                const sigSpan = document.createElement('span');
+                sigSpan.className = 'aakash-sig';
+                sigSpan.textContent = ' // Aakash';
+                textSpan.appendChild(sigSpan);
+            }
+            
+            lineDiv.appendChild(numberSpan);
+            lineDiv.appendChild(textSpan);
+            element.appendChild(lineDiv);
+            element.scrollTop = element.scrollHeight;
+        }
+        
+        function startHacking() {
+            const wifiName = wifiNameInput.value.trim();
+            if (!wifiName) {
+                alert('Please enter a WiFi network name');
+                return;
+            }
+            
+            targetNetworkSpan.textContent = wifiName;
+            targetNetworkSpan2.textContent = wifiName;
+            showPhase(2);
+            
+            // Start hacking simulation
+            setTimeout(() => addTerminalLine('Initializing Aakash Cracker WiFi Suite...'), 500);
+            setTimeout(() => addTerminalLine(`Target acquired: ${wifiName}`), 1000);
+            setTimeout(() => addTerminalLine('Bypassing initial firewall...'), 1500);
+            setTimeout(() => addTerminalLine('Firewall bypassed successfully'), 2000);
+            setTimeout(() => addTerminalLine('Scanning for vulnerabilities...'), 2500);
+            
+            // Show some code snippets
+            setTimeout(() => {
+                addTerminalLine('Loading cracking algorithms...');
+                codeSnippets.slice(0, 4).forEach(line => {
+                    addTerminalLine(line.replace('%TARGET%', wifiName));
+                });
+            }, 3500);
+            
+            // Progress bar animation - 60 seconds total
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 0.5; // 0.5% every 300ms = ~60 seconds for 100%
+                scanProgress.style.width = progress + '%';
+                progressText.textContent = Math.round(progress) + '%';
+                
+                // Add terminal lines during the process
+                if (progress % 5 === 0) {
+                    const messages = [
+                        'Analyzing network traffic patterns',
+                        'Identifying encryption weaknesses',
+                        'Mapping network topology',
+                        'Intercepting beacon frames',
+                        'Cracking WPA2 handshake',
+                        'Testing common password hashes',
+                        'Brute-forcing PSK values',
+                        'Bypassing MAC filtering',
+                        'Injecting malicious packets',
+                        'Decrypting captured data'
+                    ];
+                    addTerminalLine(messages[Math.floor(Math.random() * messages.length)]);
+                    
+                    // Occasionally show code snippets
+                    if (Math.random() < 0.3) {
+                        const randomCode = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                        addTerminalLine(randomCode.replace('%TARGET%', wifiName));
+                    }
+                    
+                    // Occasionally show Aakash signature
+                    if (Math.random() < 0.15) {
+                        addTerminalLine('// Aakash security override initiated', terminalOutput);
+                    }
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        addTerminalLine('Security protocol detected: Operator authorization required');
+                        setTimeout(() => showPhase(3), 1000);
+                    }, 500);
+                }
+            }, 300);
+        }
+        
+        function verifyOperatorCode() {
+            const code = operatorCodeInput.value.trim();
+            
+            if (code !== correctOperatorCode) {
+                // Show error screen
+                errorScreen.style.display = 'flex';
+                
+                // Crash animation effects
+                document.body.style.overflow = 'hidden';
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    errorScreen.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    operatorCodeInput.value = '';
+                }, 3000);
+                
+                return;
+            }
+            
+            // Correct code - proceed to password cracking simulation
+            showPhase(4);
+            
+            // Start cracking simulation - 60 seconds total
+            setTimeout(() => addTerminalLine('Security override accepted', crackingOutput), 500);
+            setTimeout(() => addTerminalLine('Initializing WPA2 cracking sequence', crackingOutput), 1000);
+            setTimeout(() => addTerminalLine('Brute-force attack in progress...', crackingOutput), 1500);
+            setTimeout(() => addTerminalLine('Testing common password combinations', crackingOutput), 2000);
+            
+            // Progress bar animation
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 0.5; // 0.5% every 300ms = ~60 seconds for 100%
+                crackingProgress.style.width = progress + '%';
+                crackingProgressText.textContent = Math.round(progress) + '%';
+                
+                // Add some random terminal output during the process
+                if (progress % 5 === 0) {
+                    const messages = [
+                        'Testing dictionary attack patterns',
+                        'Analyzing packet headers',
+                        'Decrypting handshake data',
+                        'Calculating possible PSK values',
+                        'Bypassing MAC filtering',
+                        'Intercepting beacon frames',
+                        'Cracking RSA encryption',
+                        'Generating rainbow tables',
+                        ' Exploiting WPS vulnerabilities',
+                        'Running Aakash decryption algorithm'
+                    ];
+                    addTerminalLine(messages[Math.floor(Math.random() * messages.length)], crackingOutput);
+                    
+                    // Occasionally show code snippets with Aakash name
+                    if (Math.random() < 0.25) {
+                        const randomCode = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                        addTerminalLine(randomCode.replace('%TARGET%', targetNetworkSpan.textContent), crackingOutput);
+                    }
+                    
+                    // Show Aakash signature
+                    if (Math.random() < 0.2) {
+                        addTerminalLine('// Aakash custom algorithm executing...', crackingOutput);
+                    }
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    // Show network error after completion
+                    setTimeout(() => {
+                        addTerminalLine('Password pattern identified...', crackingOutput);
+                        addTerminalLine('Final decryption in progress', crackingOutput);
+                        setTimeout(() => {
+                            showPhase(5);
+                            networkError.style.display = 'block';
+                        }, 2000);
+                    }, 500);
+                }
+            }, 300);
+        }
+        
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            createMatrixBackground();
+            
+            // Add some initial terminal-like effect to the title
+            const title = document.querySelector('h1');
+            let glitchInterval = setInterval(() => {
+                if (Math.random() > 0.9) {
+                    title.classList.add('glitch-text');
+                    setTimeout(() => title.classList.remove('glitch-text'), 200);
+                }
+            }, 2000);
+        });
+        
+        // Make matrix background responsive
+        window.addEventListener('resize', function() {
+            const matrixBg = document.getElementById('matrixBackground');
+            matrixBg.innerHTML = '';
+            createMatrixBackground();
+        });
+    </script>
+</body>
+</html>
