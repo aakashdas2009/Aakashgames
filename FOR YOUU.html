@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanks Bittuuu! 🎉</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #00ff88; /* Neon green for coding vibe */
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Coding theme background animations */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(0, 136, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundPulse 10s ease-in-out infinite alternate;
+            z-index: -2;
+        }
+
+        @keyframes backgroundPulse {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Scrolling code lines for coding vibe */
+        .code-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .code-line {
+            position: absolute;
+            color: #00ff88;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            white-space: nowrap;
+            animation: scrollCode linear infinite;
+        }
+
+        @keyframes scrollCode {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Birthday vibe: Floating balloons (code-styled, pixelated) */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: floatBalloons 6s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: #333;
+        }
+
+        @keyframes floatBalloons {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10%, 90% { opacity: 1; }
+            50% { transform: translateY(-20vh) rotate(10deg); }
+        }
+
+        /* Position multiple balloons */
+        .balloon:nth-child(1) { left: 10%; animation-delay: 0s; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); }
+        .balloon:nth-child(2) { left: 20%; animation-delay: 1s; background: linear-gradient(45deg, #4ecdc4, #45b7d1); }
+        .balloon:nth-child(3) { left: 80%; animation-delay: 2s; background: linear-gradient(45deg, #96ceb4, #feca57); }
+        .balloon:nth-child(4) { left: 90%; animation-delay: 3s; background: linear-gradient(45deg, #feca57, #ff9ff3); }
+        .balloon:nth-child(5) { left: 50%; animation-delay: 4s; background: linear-gradient(45deg, #ff9ff3, #54a0ff); width: 30px; height: 40px; }
+
+        /* Confetti particles for birthday fun */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #00ff88;
+            animation: fallConfetti 3s linear infinite;
+        }
+
+        @keyframes fallConfetti {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Main container */
+        .container {
+            text-align: center;
+            z-index: 1;
+            padding: 20px;
+            max-width: 90%;
+        }
+
+        /* Big bubble space */
+        .bubble {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ff88;
+            border-radius: 50%;
+            padding: 40px 60px;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 136, 0.3),
+                inset 0 0 20px rgba(0, 255, 136, 0.1);
+            animation: bubbleGlow 2s ease-in-out infinite alternate;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        @keyframes bubbleGlow {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.3), inset 0 0 20px rgba(0, 255, 136, 0.1); }
+            100% { box-shadow: 0 0 40px rgba(0, 255, 136, 0.6), inset 0 0 30px rgba(0, 255, 136, 0.2); }
+        }
+
+        /* Decorated text */
+        .bubble h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 8vw, 6rem); /* Responsive font size */
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 
+                0 0 10px #00ff88,
+                2px 2px 4px #000;
+            letter-spacing: 5px;
+            margin: 0;
+            animation: textPulse 1.5s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        @keyframes textPulse {
+            0% { transform: scale(1); text-shadow: 0 0 10px #00ff88; }
+            100% { transform: scale(1.05); text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88; }
+        }
+
+        /* Subtext for full name */
+        .subtext {
+            font-family: 'Roboto Mono', monospace;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #ffffff;
+            margin-top: 10px;
+            opacity: 0.8;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 0.8; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .bubble {
+                padding: 30px 40px;
+                min-width: 250px;
+            }
+            .balloon {
+                width: 30px;
+                height: 40px;
+            }
+            .code-line {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bubble {
+                padding: 20px 30px;
+                border-radius: 30%;
+            }
+            .container {
+                padding: 10px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .bubble {
+                padding: 60px 80px;
+                min-width: 400px;
+            }
+            .balloon {
+                width: 50px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Coding background: Scrolling code lines -->
+    <div class="code-bg" id="codeBg"></div>
+
+    <!-- Birthday balloons -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <div class="bubble">
+            <h1>THANKS BITTU</h1>
+            <p class="subtext">A special birthday shoutout to Bittuuu! 🎂💻</p>
+        </div>
+    </div>
+
+    <script>
+        // Generate scrolling code lines for coding theme
+        function createCodeLines() {
+            const codeBg = document.getElementById('codeBg');
+            const codeSnippets = [
+                'console.log("Happy Birthday!");',
+                'let bittuuu = awesome;',
+                'function celebrate() { return "Thanks!"; }',
+                'if (birthday) { partyMode(); }',
+                'const thanks = "Bittuuu rocks!";',
+                'for (let i = 0; i < candles; i++) { light(); }',
+                'async function wish() { await "Cheers!"; }'
+            ];
+
+            for (let i = 0; i < 20; i++) {
+                const line = document.createElement('div');
+                line.className = 'code-line';
+                line.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                line.style.left = Math.random() * 100 + '%';
+                line.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                line.style.animationDelay = Math.random() * 5 + 's';
+                codeBg.appendChild(line);
+            }
+        }
+
+        // Generate confetti for birthday vibe
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = ['#00ff88', '#ff6b6b', '#4ecdc4', '#feca57', '#54a0ff'][Math.floor(Math.random() * 5)];
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(confetti);
+
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Initialize animations
+        createCodeLines();
+        createConfetti();
+
+        // Restart confetti every 5 seconds for continuous effect
+        setInterval(createConfetti, 5000);
+
+        // Ensure responsiveness on resize
+        window.addEventListener('resize', () => {
+            // Regenerate elements if needed for larger screens
+            if (window.innerWidth > 1200) {
+                createCodeLines();
+            }
+        });
+    </script>
+</body>
+</html>
