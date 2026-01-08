@@ -24,14 +24,13 @@
         /* Celebration Page */
         #birthdayPage { display: none; position: fixed; inset: 0; background: linear-gradient(to bottom, #fff0f6, #f3e5f5); flex-direction: column; align-items: center; justify-content: space-around; padding: 20px; z-index: 2000; }
         
-        /* PHOTO CIRCLE STYLE */
+        /* NEW PHOTO CIRCLE */
         .photo-container { position: relative; width: 220px; height: 220px; margin-bottom: 10px; }
         .photo-circle { width: 100%; height: 100%; border-radius: 50%; border: 6px solid var(--p1); object-fit: cover; box-shadow: 0 0 20px var(--p2); animation: glow 2s infinite alternate; }
         @keyframes glow { from { box-shadow: 0 0 10px var(--p1); } to { box-shadow: 0 0 25px var(--p2); } }
 
         .moon-text { font-size: 2.2rem; color: #ff3385; text-align: center; font-weight: 900; margin: 10px 0; }
         .cake { font-size: 4rem; animation: float 3s infinite; }
-        
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
         .scroller { width: 100%; overflow: hidden; background: white; padding: 10px 0; }
@@ -59,17 +58,17 @@
 
     <div id="birthdayPage">
         <div class="cake">🎂</div>
-        <!-- ROUND CIRCLE WITH PHOTO -->
+        <!-- UPDATED PHOTO -->
         <div class="photo-container">
-            <img src="IMG_20260108_113601_880.jpg" class="photo-circle" alt="Moon">
+            <img src="IMG_20260108_113616_425.jpg" class="photo-circle" alt="Moon">
         </div>
         <h1 class="moon-text">Happy Birthday ☘☘Moon☘☘</h1>
         <div class="scroller">
             <div class="track">
+                <img src="IMG_20260108_113616_425.jpg" alt="Memory">
                 <img src="IMG_20260108_113601_880.jpg" alt="Memory">
                 <img src="https://picsum.photos/200?random=1" alt="Memory">
-                <img src="https://picsum.photos/200?random=2" alt="Memory">
-                <img src="IMG_20260108_113601_880.jpg" alt="Memory">
+                <img src="IMG_20260108_113616_425.jpg" alt="Memory">
             </div>
         </div>
     </div>
