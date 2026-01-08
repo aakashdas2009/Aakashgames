@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Moon 🌙</title>
+    <style>
+        :root { --p1: #ff85c2; --p2: #b366ff; --bg: #fff0f6; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { margin: 0; padding: 0; font-family: 'Comic Sans MS', cursive; overflow: hidden; background: var(--bg); height: 100vh; display: flex; align-items: center; justify-content: center; }
+        
+        #splash { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s; }
+        .open-btn { font-size: 5rem; cursor: pointer; animation: heartbeat 1.5s infinite; filter: drop-shadow(0 0 10px var(--p1)); }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+        .container { z-index: 10; text-align: center; width: 90%; max-width: 400px; background: white; padding: 30px; border-radius: 30px; border: 3px solid var(--p1); box-shadow: 0 10px 25px rgba(255,133,194,0.3); }
+        h1 { font-size: 1.4rem; color: #ff4d94; margin-bottom: 30px; line-height: 1.4; }
+
+        .btn-group { display: flex; justify-content: center; gap: 20px; height: 60px; position: relative; }
+        button { padding: 12px 25px; font-size: 1.1rem; border: none; border-radius: 15px; cursor: pointer; font-weight: bold; }
+        #yesBtn { background: var(--p1); color: white; }
+        #noBtn { background: #eee; color: #999; position: relative; }
+
+        #birthdayPage { display: none; position: fixed; inset: 0; background: linear-gradient(to bottom, #fff0f6, #f3e5f5); flex-direction: column; align-items: center; justify-content: space-around; padding: 10px; z-index: 2000; }
+        
+        /* MAIN HD PHOTO (Purple Outfit) */
+        .photo-container { position: relative; width: 250px; height: 250px; margin-top: 10px; overflow: hidden; border-radius: 50%; border: 6px solid var(--p1); box-shadow: 0 0 25px var(--p2); }
+        .photo-circle { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; transform: scale(1.15); animation: glow 2s infinite alternate; }
+        @keyframes glow { from { box-shadow: 0 0 10px var(--p1); } to { box-shadow: 0 0 25px var(--p2); } }
+
+        .moon-text { font-size: 2.3rem; color: #ff3385; text-align: center; font-weight: 900; margin: 5px 0; }
+        .cake { font-size: 3.5rem; animation: float 3s infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+        /* HD MEMORY SECTION */
+        .scroller { width: 100%; overflow: hidden; background: white; padding: 20px 0; border-top: 4px solid var(--p1); border-bottom: 4px solid var(--p1); }
+        .track { display: flex; width: max-content; animation: scroll 22s linear infinite; gap: 20px; }
+        .track img { width: 180px; height: 180px; border-radius: 25px; border: 5px solid var(--p2); object-fit: cover; filter: contrast(1.1) saturate(1.1); }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    </style>
+</head>
+<body>
+    <div id="splash" onclick="initApp()">
+        <div class="open-btn">💝</div>
+        <p style="color:var(--p1); font-weight:bold;">Tap for Moon's Special Birthday!</p>
+    </div>
+
+    <audio id="p1Music" loop src="https://www.chosic.com/wp-content/uploads/2021/04/Fairy-Tale-Music-Box.mp3"></audio>
+    <audio id="p2Music" loop src="https://www.chosic.com/wp-content/uploads/2021/07/Lullaby-Calm-Music.mp3"></audio>
+
+    <div id="homePage" class="container">
+        <h1>Ooye Aakanksha Aajge Kichu Special Aache mono Hoi ??</h1>
+        <div class="btn-group">
+            <button id="yesBtn" onclick="goToBirthday()">Yes</button>
+            <button id="noBtn" onmouseover="dodge()" ontouchstart="dodge()">No</button>
+        </div>
+    </div>
+
+    <div id="birthdayPage">
+        <div class="cake">🍰✨🌸</div>
+        <div class="photo-container">
+            <img src="Screenshot_20240117_112712.png" class="photo-circle" alt="Moon">
+        </div>
+        <h1 class="moon-text">Happy Birthday ☘☘Moon☘☘</h1>
+        
+        <div class="scroller">
+            <div class="track">
+                <img src="IMG_20250830_215211.png" alt="Memory 1">
+                <img src="IMG-20250309-WA0024.png" alt="Memory 2">
+                <img src="IMG_20260108_113616_425.png" alt="Memory 3">
+                <img src="IMG_20260108_113601_880.png" alt="Memory 4">
+                <img src="IMG_20250830_215211.png" alt="Memory 1">
+                <img src="IMG-20250309-WA0024.png" alt="Memory 2">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const m1 = document.getElementById('p1Music');
+        const m2 = document.getElementById('p2Music');
+
+        function initApp() {
+            document.getElementById('splash').style.opacity = '0';
+            setTimeout(() => document.getElementById('splash').style.display = 'none', 500);
+            m1.play();
+        }
+
+        function dodge() {
+            const no = document.getElementById('noBtn');
+            no.style.position = 'fixed';
+            no.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            no.style.top = Math.random() * (window.innerHeight - 80) + 'px';
+        }
+
+        function goToBirthday() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('birthdayPage').style.display = 'flex';
+            m1.pause();
+            m2.play();
+        }
+    </script>
+</body>
+</html>
