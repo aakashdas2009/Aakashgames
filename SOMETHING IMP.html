@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>💝 Happy Birthday Aakanksha! 🎀</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Comic+Neue:wght@700&family=Pacifico&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & PERFORMANCE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --pink: #ff9ed8;
+            --light-pink: #ffd1eb;
+            --pastel-pink: #ffcce6;
+            --baby-blue: #b8e0ff;
+            --mint: #c4ffe0;
+            --yellow: #fff9b6;
+            --purple: #e0c2ff;
+            --peach: #ffc9b6;
+        }
+
+        /* ===== SMOOTH ANIMATIONS ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        @keyframes gentleBob {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.03); }
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.05); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.02); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 158, 216, 0.5)); }
+            50% { filter: drop-shadow(0 0 15px rgba(255, 158, 216, 0.7)); }
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fff0f7 0%, #f8f0ff 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #ff66a3;
+            padding: 10px;
+            position: relative;
+        }
+
+        /* ===== CLEAN BACKGROUND ===== */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 40px;
+            animation: float 20s infinite linear;
+            opacity: 0.15;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== WELCOME PAGE ===== */
+        .welcome-page {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 40px;
+            padding: 40px 25px;
+            margin: 20px auto;
+            box-shadow: 0 20px 60px rgba(255, 102, 163, 0.1),
+                        0 0 0 2px rgba(255, 158, 216, 0.2);
+            border: 3px dashed var(--pink);
+            backdrop-filter: blur(10px);
+            max-width: 700px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .moon-question {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            color: #ff66a3;
+            text-align: center;
+            margin: 50px 0 40px;
+            line-height: 1.3;
+            text-shadow: 2px 2px 0 var(--yellow);
+            animation: gentleBob 4s infinite ease-in-out;
+        }
+
+        /* ===== PERFECT BUTTONS ===== */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 30px;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 150px;
+        }
+
+        .btn {
+            padding: 22px 55px;
+            font-size: 1.6rem;
+            font-family: 'Comic Neue', cursive;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            min-width: 200px;
+            z-index: 2;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            color: white;
+            animation: gentleBob 2s infinite ease-in-out;
+            border: 3px solid #A5D6A7;
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #FF5252 0%, #FF4081 100%);
+            color: white;
+            border: 3px solid #FF8A80;
+            position: relative;
+        }
+
+        .btn-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ===== BIRTHDAY PAGE ===== */
+        .birthday-page {
+            display: none;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* ===== BIRTHDAY HERO ===== */
+        .birthday-hero {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 247, 0.95));
+            border-radius: 50px;
+            padding: 50px 30px;
+            margin: 30px auto;
+            box-shadow: 0 30px 80px rgba(255, 102, 163, 0.15),
+                        0 0 0 3px rgba(255, 158, 216, 0.3);
+            border: 4px dotted var(--pink);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            max-width: 1000px;
+        }
+
+        .hero-content {
+            text-align: center;
+        }
+
+        .birthday-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3.5rem, 8vw, 5.5rem);
+            color: #ff4081;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 var(--yellow);
+            animation: glow 3s infinite alternate;
+        }
+
+        .birthday-girl {
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            background: linear-gradient(135deg, #ff4081, #ff66a3, #ff99cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+            font-weight: bold;
+            animation: heartBeat 2s infinite;
+        }
+
+        .bestu-tag {
+            font-size: 1.8rem;
+            color: #ff66a3;
+            background: rgba(255, 230, 242, 0.8);
+            padding: 15px 40px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 20px auto;
+            border: 3px solid var(--pink);
+            box-shadow: 0 10px 30px rgba(255, 158, 216, 0.3);
+            animation: gentleBob 3s infinite ease-in-out;
+        }
+
+        /* ===== EMOJI GALAXY ===== */
+        .emoji-galaxy {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 50px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 40px;
+            border: 3px solid var(--baby-blue);
+            box-shadow: 0 20px 50px rgba(184, 224, 255, 0.3);
+        }
+
+        .emoji-star {
+            font-size: 3.5rem;
+            animation: float 6s infinite ease-in-out;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        .emoji-star:hover {
+            transform: scale(1.2);
+            animation-play-state: paused;
+        }
+
+        /* ===== IMAGE GALLERY ===== */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 40px;
+            border: 3px solid var(--mint);
+            box-shadow: 0 20px 50px rgba(196, 255, 224, 0.3);
+        }
+
+        .cute-frame {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--peach);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cute-frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(255, 201, 182, 0.4);
+        }
+
+        .frame-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: gentleBob 4s infinite ease-in-out;
+        }
+
+        .frame-title {
+            font-size: 1.5rem;
+            color: #ff66a3;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .frame-content {
+            color: #ff99cc;
+            line-height: 1.5;
+        }
+
+        /* ===== MESSAGES ===== */
+        .messages-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 247, 0.95));
+            border-radius: 40px;
+            padding: 50px 40px;
+            margin: 60px auto;
+            border: 4px solid var(--purple);
+            box-shadow: 0 25px 70px rgba(224, 194, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            max-width: 900px;
+        }
+
+        .message-bubble {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid var(--light-pink);
+            box-shadow: 0 10px 30px rgba(255, 209, 235, 0.3);
+            position: relative;
+            transform-origin: center;
+            transition: all 0.3s ease;
+        }
+
+        .message-bubble:hover {
+            transform: scale(1.02);
+        }
+
+        /* ===== WOW BUTTON ===== */
+        .wow-button {
+            background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+            color: white;
+            border: none;
+            padding: 25px 60px;
+            font-size: 1.8rem;
+            border-radius: 40px;
+            cursor: pointer;
+            margin: 40px auto;
+            display: block;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            box-shadow: 0 20px 50px rgba(255, 87, 34, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .wow-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 30px 70px rgba(255, 87, 34, 0.5);
+        }
+
+        .wow-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite linear;
+        }
+
+        /* ===== SURPRISE SECTION ===== */
+        .surprise-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 247, 0.95));
+            border-radius: 50px;
+            padding: 60px 40px;
+            margin: 60px auto;
+            border: 4px solid var(--pastel-pink);
+            box-shadow: 0 30px 80px rgba(255, 158, 216, 0.3);
+            display: none;
+            animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 900px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .surprise-title {
+            font-size: 2.5rem;
+            color: #ff4081;
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 0 var(--yellow);
+        }
+
+        .birthday-cake {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cake {
+            font-size: 6rem;
+            animation: gentleBob 3s infinite ease-in-out;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin: 60px 0 30px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 40px;
+            border: 3px solid var(--yellow);
+            box-shadow: 0 20px 60px rgba(255, 249, 182, 0.3);
+        }
+
+        .footer-text {
+            font-size: 1.3rem;
+            color: #ff66a3;
+            margin-bottom: 20px;
+        }
+
+        .footer-emojis {
+            font-size: 2.5rem;
+            letter-spacing: 15px;
+            margin: 30px 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .btn {
+                min-width: 280px;
+                padding: 20px 40px;
+                font-size: 1.4rem;
+            }
+            
+            .emoji-galaxy {
+                padding: 30px 20px;
+                gap: 20px;
+            }
+            
+            .emoji-star {
+                font-size: 2.8rem;
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+            
+            .wow-button {
+                padding: 20px 40px;
+                font-size: 1.5rem;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .moon-question {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                min-width: 250px;
+                padding: 18px 35px;
+                font-size: 1.3rem;
+            }
+            
+            .birthday-title {
+                font-size: 2.8rem;
+            }
+            
+            .birthday-girl {
+                font-size: 1.8rem;
+            }
+            
+            .bestu-tag {
+                font-size: 1.4rem;
+                padding: 12px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CLEAN BACKGROUND -->
+    <div class="bg-pattern" id="bgPattern"></div>
+    
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- WELCOME PAGE -->
+        <div class="welcome-page" id="welcomePage">
+            <div class="moon-question">
+                🌙 Oi Moon! <br>
+                Aajge kichu ki ache? 
+                <span style="font-size: 2rem;">🤔💭✨</span>
+            </div>
+            
+            <!-- FIXED BUTTONS -->
+            <div class="button-container">
+                <button class="btn yes-btn" id="yesBtn">
+                    <div class="btn-content">
+                        💖 Yes! Let's Party! 🎉
+                    </div>
+                </button>
+                
+                <button class="btn no-btn" id="noBtn">
+                    <div class="btn-content">
+                        😒 No...
+                    </div>
+                </button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; font-size: 1.2rem; color: #ff66a3;">
+                🎀 Click "Yes" for birthday magic! 🎀
+            </div>
+        </div>
+        
+        <!-- BIRTHDAY PAGE -->
+        <div class="birthday-page" id="birthdayPage">
+            <!-- HERO SECTION -->
+            <div class="birthday-hero">
+                <div class="hero-content">
+                    <h1 class="birthday-title">Happy Birthday! 🎂</h1>
+                    <div class="birthday-girl">Aakanksha! 💕</div>
+                    <div class="bestu-tag">My Cutie Bestu! 🥰</div>
+                    
+                    <div style="font-size: 1.4rem; color: #ff99cc; margin-top: 30px;">
+                        Wishing you the most magical day! ✨
+                    </div>
+                </div>
+            </div>
+            
+            <!-- EMOJI GALAXY -->
+            <div class="emoji-galaxy">
+                <div class="emoji-star" onclick="showEmojiMessage(this)">💖</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">🎀</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">🌸</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">✨</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">💕</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">🎂</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">🎁</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">🥰</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">😍</div>
+                <div class="emoji-star" onclick="showEmojiMessage(this)">💝</div>
+            </div>
+            
+            <!-- IMAGE GALLERY -->
+            <div class="image-gallery">
+                <div class="cute-frame">
+                    <span class="frame-emoji">🎨</span>
+                    <h3 class="frame-title">Creative Soul</h3>
+                    <p class="frame-content">You bring colors to everyone's life with your amazing personality! 🌈</p>
+                </div>
+                
+                <div class="cute-frame">
+                    <span class="frame-emoji">🌟</span>
+                    <h3 class="frame-title">Shining Star</h3>
+                    <p class="frame-content">Your smile lights up every room you enter! ✨</p>
+                </div>
+                
+                <div class="cute-frame">
+                    <span class="frame-emoji">💖</span>
+                    <h3 class="frame-title">Heart of Gold</h3>
+                    <p class="frame-content">The kindest and most caring bestu anyone could ask for! 💕</p>
+                </div>
+                
+                <div class="cute-frame">
+                    <span class="frame-emoji">🎯</span>
+                    <h3 class="frame-title">Dream Achiever</h3>
+                    <p class="frame-content">May all your dreams come true this year! 🚀</p>
+                </div>
+            </div>
+            
+            <!-- SPECIAL MESSAGES -->
+            <div class="messages-container">
+                <div class="message-bubble">
+                    💕 To my amazing bestu Aakanksha! On your special day, I wish you endless happiness, success in everything you do, and all the love in the world! You deserve nothing but the best! 🥰
+                </div>
+                
+                <div class="message-bubble">
+                    🌸 May your life be filled with beautiful moments, laughter that never ends, and dreams that always come true! You're the most wonderful person I know! ✨
+                </div>
+                
+                <div class="message-bubble">
+                    🎀 You're not just my bestu, you're the sunshine that brightens my darkest days, the rainbow after my storms, and the reason for so many smiles! 💖
+                </div>
+                
+                <div class="message-bubble">
+                    ✨ Always remember how incredibly special you are! Today is all about you, so enjoy every single moment of your amazing day! 🎂
+                </div>
+            </div>
+            
+            <!-- WOW BUTTON -->
+            <button class="wow-button" id="wowButton">
+                🎁 Click for Magical Birthday Wishes! ✨
+            </button>
+            
+            <!-- SURPRISE SECTION -->
+            <div class="surprise-section" id="surpriseSection">
+                <h2 class="surprise-title">✨ Magical Birthday Surprise! ✨</h2>
+                
+                <div class="message-bubble">
+                    🥳 <b>HAPPY BIRTHDAY, MY CUTIE BESTU AAKANKSHA! 🎉</b><br><br>
+                    Today is your day to shine brighter than ever! 🌟<br>
+                    May your year be filled with:<br>
+                    💖 Endless joy and laughter<br>
+                    ✨ Countless beautiful memories<br>
+                    🌸 Success in all your dreams<br>
+                    🎀 Love that grows stronger every day!<br><br>
+                    You deserve the universe and more! 🚀💫
+                </div>
+                
+                <div class="birthday-cake">
+                    <div class="cake" onclick="blowCandles()">🎂✨</div>
+                    <div style="margin-top: 20px; font-size: 1.3rem; color: #ff66a3;">
+                        Click the cake to blow candles! 🕯️
+                    </div>
+                </div>
+                
+                <div style="text-align: center; font-size: 2.5rem; margin: 40px 0; color: #ff4081;">
+                    💖🎀🌸✨💕🎂🎁🥰😍💝
+                </div>
+            </div>
+            
+            <!-- FOOTER -->
+            <div class="footer">
+                <div class="footer-text">
+                    Made with all the love in the world for Aakanksha 💕
+                </div>
+                <div class="footer-emojis">
+                    💖🎀🌸✨💕
+                </div>
+                <div style="font-size: 1.2rem; color: #ff99cc;">
+                    Your cutie bestu forever and always! 🎀
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("🎀 Website loaded successfully!");
+            
+            // Create background pattern
+            createBackgroundPattern();
+            
+            // Initialize buttons
+            initButtons();
+            
+            // Start animations
+            startAnimations();
+        });
+
+        // ========== BACKGROUND PATTERN ==========
+        function createBackgroundPattern() {
+            const container = document.getElementById('bgPattern');
+            const emojis = ['💖', '🎀', '🌸', '✨', '💕'];
+            
+            // Create floating emojis
+            for (let i = 0; i < 20; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'floating-emoji';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = `${Math.random() * 100}%`;
+                emoji.style.top = `${Math.random() * 100}%`;
+                emoji.style.animationDelay = `${Math.random() * 15}s`;
+                emoji.style.animationDuration = `${15 + Math.random() * 20}s`;
+                emoji.style.fontSize = `${30 + Math.random() * 40}px`;
+                container.appendChild(emoji);
+            }
+        }
+
+        // ========== BUTTON FUNCTIONALITY ==========
+        function initButtons() {
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const welcomePage = document.getElementById('welcomePage');
+            const birthdayPage = document.getElementById('birthdayPage');
+            
+            let noClicks = 0;
+            const maxNoClicks = 6;
+            
+            // YES BUTTON
+            yesBtn.addEventListener('click', function() {
+                // Create smooth transition
+                welcomePage.style.opacity = '0';
+                welcomePage.style.transform = 'translateY(-20px) scale(0.95)';
+                welcomePage.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    welcomePage.style.display = 'none';
+                    birthdayPage.style.display = 'block';
+                    
+                    // Start birthday animations
+                    startBirthdayAnimations();
+                }, 400);
+            });
+            
+            // NO BUTTON - Simple trolling
+            noBtn.addEventListener('mouseover', function(e) {
+                if (noClicks >= maxNoClicks) return;
+                
+                noClicks++;
+                
+                // Move button within container
+                const container = this.parentElement;
+                const containerRect = container.getBoundingClientRect();
+                const btnRect = this.getBoundingClientRect();
+                
+                const safeX = Math.random() * (containerRect.width - btnRect.width - 40) + 20;
+                const safeY = Math.random() * (containerRect.height - btnRect.height - 40) + 20;
+                
+                this.style.position = 'absolute';
+                this.style.left = `${safeX}px`;
+                this.style.top = `${safeY}px`;
+                
+                // Change text
+                const texts = [
+                    "😒 Nope!",
+                    "🤨 Try again!",
+                    "😤 Can't catch me!",
+                    "🙄 Still no!",
+                    "😏 Too slow!",
+                    "🎯 Missed!"
+                ];
+                this.querySelector('.btn-content').innerHTML = 
+                    texts[Math.floor(Math.random() * texts.length)];
+                
+                // If max clicks reached
+                if (noClicks >= maxNoClicks) {
+                    setTimeout(() => {
+                        this.style.background = 'linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%)';
+                        this.style.borderColor = '#A5D6A7';
+                        this.querySelector('.btn-content').innerHTML = '🎉 Okay fine! ✨';
+                        
+                        setTimeout(() => {
+                            yesBtn.click();
+                        }, 800);
+                    }, 300);
+                }
+            });
+            
+            // Mobile support
+            noBtn.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const fakeEvent = new MouseEvent('mouseover', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                this.dispatchEvent(fakeEvent);
+            });
+        }
+
+        // ========== ANIMATIONS ==========
+        function startAnimations() {
+            // Animate welcome page elements
+            const moonText = document.querySelector('.moon-question');
+            moonText.style.animation = 'gentleBob 4s infinite ease-in-out';
+            
+            // Animate yes button
+            const yesBtn = document.getElementById('yesBtn');
+            yesBtn.style.animation = 'gentleBob 2s infinite ease-in-out';
+        }
+
+        function startBirthdayAnimations() {
+            // Title animation
+            const title = document.querySelector('.birthday-title');
+            title.style.animation = 'bounceIn 1s ease-out';
+            
+            // Animate all emoji stars
+            const stars = document.querySelectorAll('.emoji-star');
+            stars.forEach((star, index) => {
+                setTimeout(() => {
+                    star.style.animation = 'none';
+                    setTimeout(() => {
+                        star.style.animation = `float ${4 + Math.random() * 4}s infinite ease-in-out`;
+                    }, 10);
+                }, index * 100);
+            });
+            
+            // Animate frames
+            const frames = document.querySelectorAll('.cute-frame');
+            frames.forEach((frame, index) => {
+                setTimeout(() => {
+                    frame.style.opacity = '0';
+                    frame.style.transform = 'translateY(20px)';
+                    frame.style.transition = 'all 0.5s ease';
+                    
+                    setTimeout(() => {
+                        frame.style.opacity = '1';
+                        frame.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 200);
+            });
+        }
+
+        // ========== EMOJI MESSAGES ==========
+        function showEmojiMessage(emoji) {
+            const messages = [
+                "You're amazing Aakanksha! 💖",
+                "So cute and lovely! 🎀",
+                "Beautiful like spring flowers! 🌸",
+                "Full of sparkle and shine! ✨",
+                "Sweet as birthday cake! 🎂",
+                "The best gift ever! 🎁",
+                "Absolutely adorable! 🥰",
+                "Simply perfect! 😍",
+                "Heart of gold! 💝"
+            ];
+            
+            const original = emoji.textContent;
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            
+            emoji.textContent = message;
+            emoji.style.fontSize = '1.1rem';
+            emoji.style.animation = 'none';
+            emoji.style.background = 'rgba(255, 255, 255, 0.95)';
+            emoji.style.padding = '12px';
+            emoji.style.borderRadius = '20px';
+            emoji.style.boxShadow = '0 10px 30px rgba(255, 158, 216, 0.4)';
+            emoji.style.width = '180px';
+            emoji.style.height = 'auto';
+            emoji.style.minHeight = '60px';
+            emoji.style.display = 'flex';
+            emoji.style.alignItems = 'center';
+            emoji.style.justifyContent = 'center';
+            emoji.style.whiteSpace = 'normal';
+            emoji.style.wordWrap = 'break-word';
+            emoji.style.zIndex = '100';
+            emoji.style.transition = 'all 0.3s ease';
+            
+            setTimeout(() => {
+                emoji.textContent = original;
+                emoji.style = '';
+                emoji.className = 'emoji-star';
+                emoji.style.animationDelay = `${Math.random() * 2}s`;
+            }, 2000);
+        }
+
+        // ========== WOW BUTTON ==========
+        document.getElementById('wowButton').addEventListener('click', function() {
+            const surpriseSection = document.getElementById('surpriseSection');
+            
+            // Create a gentle animation
+            this.style.transform = 'scale(0.95)';
+            
+            // Show surprise with animation
+            setTimeout(() => {
+                surpriseSection.style.display = 'block';
+                this.style.display = 'none';
+                
+                // Scroll to surprise
+                surpriseSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Animate surprise content
+                const cake = document.querySelector('.cake');
+                cake.style.animation = 'heartBeat 0.5s';
+            }, 200);
+        });
+
+        // ========== BLOW CANDLES ==========
+        function blowCandles() {
+            const cake = document.querySelector('.cake');
+            cake.textContent = '🎂✨';
+            cake.style.animation = 'heartBeat 0.5s';
+            
+            // Show message after delay
+            setTimeout(() => {
+                // Create a simple alert
+                const messageBox = document.createElement('div');
+                messageBox.style.position = 'fixed';
+                messageBox.style.top = '50%';
+                messageBox.style.left = '50%';
+                messageBox.style.transform = 'translate(-50%, -50%)';
+                messageBox.style.background = 'white';
+                messageBox.style.padding = '30px';
+                messageBox.style.borderRadius = '20px';
+                messageBox.style.boxShadow = '0 20px 60px rgba(255, 102, 163, 0.3)';
+                messageBox.style.zIndex = '10000';
+                messageBox.style.textAlign = 'center';
+                messageBox.style.border = '3px solid #ff9ed8';
+                messageBox.innerHTML = `
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🎉</div>
+                    <div style="font-size: 1.3rem; color: #ff66a3;">
+                        You blew the candles! Make a wish Aakanksha! 💖
+                    </div>
+                    <button onclick="this.parentElement.remove()" 
+                            style="margin-top: 20px; padding: 10px 30px; 
+                                   background: #ff9ed8; color: white; 
+                                   border: none; border-radius: 20px; 
+                                   cursor: pointer;">
+                        OK ✨
+                    </button>
+                `;
+                
+                document.body.appendChild(messageBox);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    if (messageBox.parentElement) {
+                        messageBox.remove();
+                    }
+                }, 3000);
+            }, 500);
+        }
+
+        // ========== MOBILE OPTIMIZATIONS ==========
+        // Prevent zoom on double tap
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
+        });
+    </script>
+</body>
+</html>
